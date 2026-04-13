@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analyst Portfolio</title>
+
+<style>
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --accent: #38bdf8;
+  --text: #e2e8f0;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #020617;
+  padding: 20px;
+  height: 100vh;
+}
+
+.sidebar h2 {
+  color: var(--accent);
+}
+
+.option {
+  display: block;
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.option:hover, .active {
+  background: var(--accent);
+  color: black;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2>Portfolio</h2>
+  <div class="option active" data-option="home">Home</div>
+  <div class="option" data-option="about">About</div>
+  <div class="option" data-option="skills">Skills</div>
+  <div class="option" data-option="projects">Projects</div>
+  <div class="option" data-option="contact">Contact</div>
+</div>
+
+<!-- Content -->
+<div class="content" id="content-area"></div>
+
+<script>
+// Content Templates
+const contentTemplates = {
+
+home: `
+<h2>Welcome to My Portfolio! 📊</h2>
+<p>Hello! I’m <b>Burla Venkata Srinivas Mahesh</b>, a passionate <b>Data Analyst</b>.</p>
+<p>I specialize in transforming raw data into meaningful insights using Python, SQL, and Power BI.</p>
+<p>Let’s turn data into decisions 🚀</p>
+`,
+
+about: `
+<h2>About Me</h2>
+<p>I am a Data Analyst with a strong foundation in data analysis, visualization, and statistics.</p>
+<p>I graduated in Computer Science and enjoy solving real-world problems using data.</p>
+`,
+
+skills: `
+<h2>Skills</h2>
+<pre>
+Python              : Pandas, NumPy
+Visualization       : Power BI, Matplotlib
+Database            : SQL, MongoDB
+Excel               : Advanced Excel
+Tools               : Jupyter, VS Code
+</pre>
+`,
+
+projects: `
+<h2>Projects</h2>
+<div class="projects-grid">
+
+<div class="project-card">
+<h3>Student Performance Analysis</h3>
+<p>Analyzed student data and visualized performance trends using Python.</p>
+</div>
+
+<div class="project-card">
+<h3>E-commerce Sales Analysis</h3>
+<p>Created dashboards using Power BI to analyze sales and customer behavior.</p>
+</div>
+
+<div class="project-card">
+<h3>Performance Analysis of The company </h3>
+<p>Built KPI dashboards to track company growth and insights.</p>
+</div>
+
+</div>
+`,
+
+contact: `
+<h2>Contact</h2>
+<p>📞 7673938988</p>
+<p>📧 maheshburla562@gmail.com</p>
+<p><a href="https://github.com/mahesh18-hub" target="_blank">GitHub</a></p>
+<p><a href="https://www.linkedin.com/in/burla-venkata-srinivas-mahesh-792b1a3b0" target="_blank">LinkedIn</a></p>
+`
+};
+
+// Elements
+const options = document.querySelectorAll('.option');
+const contentArea = document.getElementById('content-area');
+
+// Load Content
+function loadContent(option) {
+  contentArea.innerHTML = contentTemplates[option];
+}
+
+// Set Active Menu
+options.forEach(opt => {
+  opt.addEventListener('click', () => {
+    options.forEach(o => o.classList.remove('active'));
+    opt.classList.add('active');
+    loadContent(opt.dataset.option);
+  });
+});
+
+// Default Load
+loadContent('home');
+</script>
+
+</body>
+</html>
